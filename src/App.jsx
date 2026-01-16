@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Trash2, Send, Upload, X } from 'lucide-react';
+import Login from './Login';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [question, setQuestion] = useState('');
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
@@ -36,6 +38,12 @@ function App() {
     }
   };
 
+  // 로그인하지 않은 경우 로그인 페이지 표시
+  if (!isLoggedIn) {
+    return <Login onLogin={() => setIsLoggedIn(true)} />;
+  }
+
+  // 로그인한 경우 메인 페이지 표시
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center p-4">
       <div className="max-w-2xl w-full">
@@ -113,8 +121,6 @@ function App() {
                 </button>
               </div>
             </div>
-
-
           </div>
         </div>
 
