@@ -33,7 +33,7 @@ chroma_client = None
 gemini_model = None
 
 # PDF 파일 경로 설정 (여기서 수정!)
-PDF_FILE_PATH = "data/your_document.pdf"  # 실제 PDF 파일 경로로 변경
+PDF_FILE_PATH = "../recycle.pdf"  # 실제 PDF 파일 경로로 변경
 
 
 @app.on_event("startup")
@@ -53,7 +53,7 @@ async def startup_event():
         print("WARNING: GEMINI_API_KEY not found in environment variables")
     else:
         genai.configure(api_key=api_key)
-        gemini_model = genai.GenerativeModel('gemini-1.5-flash')
+        gemini_model = genai.GenerativeModel('gemini-3-flash')
         print("Gemini initialized successfully!")
 
     # 시작 시 PDF 자동 로드
