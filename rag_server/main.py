@@ -1,3 +1,11 @@
+import os
+import sys
+
+# 현재 실행 중인 venv의 lib 폴더를 DLL 탐색 경로에 강제로 추가
+dll_path = os.path.join(sys.prefix, 'Lib', 'site-packages', 'torch', 'lib')
+if os.path.exists(dll_path):
+    os.add_dll_directory(dll_path)
+
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
@@ -6,7 +14,6 @@ import pymupdf4llm
 import tiktoken
 from sentence_transformers import SentenceTransformer
 from chromadb import Documents, EmbeddingFunction, Embeddings
-import os
 from dotenv import load_dotenv
 import google.generativeai as genai
 
